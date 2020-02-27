@@ -1,0 +1,14 @@
+Program wyszukujacy uzycia/powtorzenia makr IDC i IDD
+
+1. Dla kazdego projektu odszukac plik resource.h i odczytac liste IDC i IDD
+2. W obrebie projektu przeszukac kazdy plik *.h i *.cpp i poszukac wystapien IDC i IDD
+3. Wygenerowac plik summary_<nazwa projektu>.txt z podsumowaniem wsytapien makr z podaniem liczby wystapien i plikow, w ktorych makro wystepuje (sortowane rosnaco). Specjalnie oznaczyc makra, ktore nie wystepuja nigdzie.
+4. Na koncu pliku dopisac powtorzenia wartosci i wolne numery (wartosci nie wystepujace w pliku resource.h).
+	Dla podanego przykladu:
+	Powtorzenia:
+		1008 - 4
+	Wolne numery:
+		1015
+		1048
+		1049
+		
