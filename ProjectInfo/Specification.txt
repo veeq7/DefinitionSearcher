@@ -1,0 +1,2 @@
+Otwarcie wszystkich plikow --> przeszukanie plikow ".h" --> zapisanie wszystkich kontrolek do listy --> 
+--> przeszukanie plikow ".cr" w posazukiwaniu kontrolek --> podliczenie uzytych kontrolek -->(...)
