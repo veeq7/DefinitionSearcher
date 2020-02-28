@@ -1,0 +1,22 @@
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.csprojAssemblyReference.cache
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.AssemblyInfoInputs.cache
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.AssemblyInfo.cs
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.exe
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.deps.json
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.runtimeconfig.json
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.runtimeconfig.dev.json
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.dll
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.pdb
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.dll
+C:\Users\praktykant\source\repos\DefinitionSearcher v1\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.pdb
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.exe
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.deps.json
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.runtimeconfig.json
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.runtimeconfig.dev.json
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.dll
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\bin\Debug\netcoreapp3.1\DefinitionSearcher v1.pdb
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.csprojAssemblyReference.cache
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.AssemblyInfoInputs.cache
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.AssemblyInfo.cs
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.dll
+C:\Users\praktykant\Desktop\Praktyki\DefinitionSearcher\ProjectInfo\DefinitionSearcher v1\obj\Debug\netcoreapp3.1\DefinitionSearcher v1.pdb
