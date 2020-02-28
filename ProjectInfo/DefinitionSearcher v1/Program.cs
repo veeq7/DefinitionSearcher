@@ -13,7 +13,7 @@ namespace DefinitionSearcher_v1
             do
             {
                 Console.Clear();
-                Console.WriteLine("Podaaj sciezke do folderu: ");
+                Console.WriteLine("Podaj sciezke do folderu: ");
                 path = Console.ReadLine();
             }
             while (!isValid(path));
@@ -24,8 +24,7 @@ namespace DefinitionSearcher_v1
             RecursiveFileProcessor fileProcessor =new RecursiveFileProcessor();
             fileProcessor.ProcessDirectory(path, false);
             fileProcessor.ProcessDirectory(path, true);
-
-            fileProcessor.WriteNames();                                             //
+            fileProcessor.WriteNames();                                             
 
 
 

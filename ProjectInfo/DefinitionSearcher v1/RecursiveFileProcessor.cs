@@ -7,7 +7,7 @@ namespace DefinitionSearcher_v1
 {
     public class RecursiveFileProcessor
     {
-        Dictionary<string, Marker> lights = new Dictionary<string, Marker>();
+        Dictionary<string, Marker> Markers = new Dictionary<string, Marker>();
 
         public RecursiveFileProcessor()
         {
@@ -42,9 +42,9 @@ namespace DefinitionSearcher_v1
                         {
                             if (arg.StartsWith("IDC_") || arg.StartsWith("IDD_"))
                             {
-                                if (lights.ContainsKey(arg))
+                                if (Markers.ContainsKey(arg))
                                 {
-                                    lights[arg].Reps++;
+                                    Markers[arg].Reps++;
                                 } else
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
@@ -60,7 +60,7 @@ namespace DefinitionSearcher_v1
                     {
                         if (words.Length >= 3)
                         {
-                            lights.Add(words[1], new Marker(words[1], words[2]));
+                            Markers.Add(words[1], new Marker(words[1], words[2]));
 
                         }
                     }
@@ -73,13 +73,17 @@ namespace DefinitionSearcher_v1
 
             MarkerList += "Powtorzenia: \n";
 
-            int i=1;       
-            foreach (var kvLight in lights)
+            int i=0;       
+            foreach (var kvLight in Markers)
             {  
                 if (kvLight.Value.Reps > 0)
-                {   
-                    i++;
-                    MarkerList +=("    ID: " + kvLight.Value.Id + " - " + kvLight.Value.Reps+ "\n");   
+                {
+
+                    if (kvLight.Value.Id != null)
+                    {
+                        MarkerList += ("    ID: " + kvLight.Value.Id + " - " + kvLight.Value.Reps + "\n");
+                        i++;
+                    }
                 }    
             }
 
@@ -90,13 +94,17 @@ namespace DefinitionSearcher_v1
             Console.ResetColor();
             MarkerList += ("Wolne numery: \n");
 
-            i=1;
-            foreach (var kvLight in lights)
+            i=0;
+            foreach (var kvLight in Markers)
             {
                 if (kvLight.Value.Reps <= 0)
-                {   
-                    i++;
-                    MarkerList += ("    ID: " + kvLight.Value.Id+"\n");  
+                {
+
+                    if (kvLight.Value.Id != null)
+                    {
+                        MarkerList += ("    ID: " + kvLight.Value.Id + " \n");
+                        i++;
+                    }
                 }
             }
             Console.ForegroundColor = ConsoleColor.Green;
