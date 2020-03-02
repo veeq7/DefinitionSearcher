@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -7,27 +8,53 @@ namespace DefinitionSearcher_v1
 {
     public class RecursiveFileProcessor
     {
-        Dictionary<string, Marker> Markers = new Dictionary<string, Marker>();
+        Dictionary<string, Marker> markers = new Dictionary<string, Marker>();
+        string outputFilePath;
 
-        public RecursiveFileProcessor()
+        public void ProcessDirectory(string targetDirectory, int directoryIndex = 0)
         {
 
-        }
+            if (directoryIndex == 1)
+            {
+                outputFilePath = targetDirectory + "\\output.txt";
+            }
 
-        public void ProcessDirectory(string targetDirectory, bool findReps)
-        {
             string[] fileEntries = Directory.GetFiles(targetDirectory);
+
             foreach (string fileName in fileEntries)
-                ProcessFile(fileName, findReps);
+            {
+                ProcessFile(fileName, directoryIndex > 1);
+            }
+            
+            if (directoryIndex == 1)
+            {
+                foreach (string fileName in fileEntries)
+                {
+                    if (fileName.EndsWith(".h")) continue;
+                    ProcessFile(fileName, true);
+                }
+            }
+            
+
 
             string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
+
             foreach (string subdirectory in subdirectoryEntries)
-                ProcessDirectory(subdirectory, findReps);
+            {
+                ProcessDirectory(subdirectory, directoryIndex+1);
+            }
+
+            if (directoryIndex == 1)
+            {
+                WriteNames();
+                markers = new Dictionary<string, Marker>();
+            }
         }
 
-        public void ProcessFile(string path, bool findReps)
-        {
 
+
+        private void ProcessFile(string path, bool findReps)
+        {
             string[] lines = File.ReadAllLines(path);
 
             foreach (string line in lines)
@@ -42,83 +69,123 @@ namespace DefinitionSearcher_v1
                         {
                             if (arg.StartsWith("IDC_") || arg.StartsWith("IDD_"))
                             {
-                                if (Markers.ContainsKey(arg))
+                                if (markers.ContainsKey(arg))
                                 {
-                                    Markers[arg].Reps++;
-                                } else
+                                    markers[arg].Reps++;
+                                }
+                                else
                                 {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("not found key " + arg);
-                                    Console.ResetColor();
+                                    //Console.ForegroundColor = ConsoleColor.Red;
+                                    //Console.WriteLine("Key was not defined: " + arg);
+                                    //Console.ResetColor();
                                 }
                             }
                         }
                     }
-                } else
+                }
+                else
                 {
                     if (line.StartsWith("#define"))
                     {
+
                         if (words.Length >= 3)
                         {
-                            Markers.Add(words[1], new Marker(words[1], words[2]));
-
+                            if (markers.ContainsKey(words[1])) continue;
+                            markers.Add(words[1], new Marker(words[1], words[2]));
                         }
                     }
                 }
             }
         }
+
+        public List<Marker> SortMarkersByReps()
+        {
+            List<Marker> list = new List<Marker>();
+
+            foreach (var kv in markers)
+            {
+                list.Add(kv.Value);
+            }
+
+            return list.OrderBy(x => -x.Reps).ToList(); ;
+        }
+
         public void WriteNames()
         {
-            string MarkerList ="";
+
+            List<Marker> markers = SortMarkersByReps();
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(new String('-', 40) +"\n" +"File: " + outputFilePath + "\n"+ new String('-', 40));
+            Console.ResetColor();
+
+            string MarkerList = "";
 
             MarkerList += "Powtorzenia: \n";
 
-            int i=0;       
-            foreach (var kvLight in Markers)
-            {  
-                if (kvLight.Value.Reps > 0)
-                {
+            int i = 0;
+            foreach (var marker in markers)
+            {
+                if (marker.Reps <= 0)
+                    continue;
 
-                    if (kvLight.Value.Id != null)
-                    {
-                        MarkerList += ("    ID: " + kvLight.Value.Id + " - " + kvLight.Value.Reps + "\n");
-                        i++;
-                    }
-                }    
+                if (string.IsNullOrEmpty(marker.Id))
+                    continue;
+                
+                MarkerList +=("Name " + marker.Name
+                + new String(' ', GetLongestMarkerLengthPlusOne() - marker.Name.Length)
+                + "\tID: " + marker.Id + "-" + marker.Reps + "\n");
+                i++;
             }
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("-----------------------------------\n" +
-                              "Ilosc kontrolek w uzyciu: "+i+ "" +
-                              "\n-----------------------------------\n");
+            Console.WriteLine(
+                (new String('-', 40) + "\nIlosc kontrolek w uzyciu: " + i + "\n" +new String('-', 40)));
             Console.ResetColor();
             MarkerList += ("Wolne numery: \n");
 
-            i=0;
-            foreach (var kvLight in Markers)
+            i = 0;
+            foreach (var marker in markers)
             {
-                if (kvLight.Value.Reps <= 0)
+                if (marker.Reps <= 0)
                 {
 
-                    if (kvLight.Value.Id != null)
+                    if (marker.Id != null)
                     {
-                        MarkerList += ("    ID: " + kvLight.Value.Id + " \n");
+                        MarkerList += ("Name "+marker.Name 
+                        + new String(' ',GetLongestMarkerLengthPlusOne() - marker.Name.Length)
+                        +"\tID: "+marker.Id+ "-" +marker.Reps+"\n");
                         i++;
                     }
                 }
             }
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("-----------------------------------\nIlosc nieuzywanych kontrolek: " + i +
-                              "\n-----------------------------------\n");
+            
+            Console.WriteLine(new String('-', 40)+"\nIlosc nieuzywanych kontrolek: " + i + "\n" + new String('-', 40));
             Console.ResetColor();
 
-            CreateNewFile("C:/Users/praktykant/Desktop/Lista kontrolek.txt", MarkerList);
-            
+            CreateNewFile(outputFilePath, MarkerList);
+
         }
         public void CreateNewFile(string path, string text)
         {
             File.WriteAllText(path, text);
         }
+
+        public int GetLongestMarkerLengthPlusOne()
+        {
+            int max = 0;
+            
+            foreach(var marker in markers.Values)
+            {
+                if (max < marker.Name.Length) max = marker.Name.Length;
+            }
+
+            return max+1;
+
+        }
+        
+
 
 
     }
