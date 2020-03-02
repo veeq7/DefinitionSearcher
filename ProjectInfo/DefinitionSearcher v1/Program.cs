@@ -10,21 +10,14 @@ namespace DefinitionSearcher_v1
             string path = "";                            
 
             
-           /* do
-            {
-                Console.Clear();
-                Console.WriteLine("Podaj sciezke do folderu: ");
-                path = Console.ReadLine();
-            }
-            while (!isValid(path));
-            */
+           
 
 
 
             RecursiveFileProcessor fileProcessor =new RecursiveFileProcessor();
 
             fileProcessor.ProcessDirectory(Directory.GetCurrentDirectory());
-
+            Console.ReadKey();
 
 
         }
